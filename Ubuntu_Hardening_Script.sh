@@ -94,6 +94,15 @@ sudo iptables -A OUTPUT -p tcp --dport 80 -j ACCEPT
 #Allow NTP
 sudo iptables -A OUTPUT -p udp --dport 123 -j ACCEPT
 
+#Install AppArmour
+
+sudo apt install apparmor
+sudo systemctl enable apparmor
+sudo systemctl start apparmor
+
+#Disabling unpriviliedged user namespaces
+
+sudo sysctl -w kernel.unprivileged_userns_clone=0
 
 echo -e "\e[36m Configuraing Dynamic Firewall \e[0m"
 
